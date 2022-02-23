@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int grille[9][9] = { {0, 0, 0, 0, 0, 0, 0, 0, 0},
+int grille[9][9] = { 
+{0, 0, 0, 0, 0, 0, 0, 0, 0},
 {0, 0, 0, 0, 0, 0, 0, 0, 0},
 {0, 0, 0, 0, 0, 0, 0, 0, 0},
 {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -10,18 +11,23 @@ int grille[9][9] = { {0, 0, 0, 0, 0, 0, 0, 0, 0},
 {0, 0, 0, 0, 0, 0, 0, 0, 0},
 {0, 0, 0, 0, 0, 0, 0, 0, 0},
 {0, 0, 0, 0, 0, 0, 0, 0, 0}};
+
 bool presentcol(int col, int nb){ //tester si le chiffre est present dans col
 for (int ligne = 0; ligne < 9; ligne++)
 if (grille[ligne][col] == nb)
 return true;
 return false;
 }
+
+
 bool presentligne(int ligne, int nb){ //tester si le chiffre est present dans ligne
 for (int col = 0; col < 9; col++)
 if (grille[ligne][col] == nb)
 return true;
 return false;
 }
+
+
 bool presentcarre(int lignedeb, int coldeb, int nb){ //tester si le chiffre est present dans un carrée 3 x 3
 for (int ligne = 0; ligne < 3; ligne++)
 for (int col = 0; col < 3; col++)
@@ -29,6 +35,8 @@ if (grille[ligne+lignedeb][col+coldeb] == nb)
 return true;
 return false;
 }
+
+
 void affiche(){ //afficher la grille
 for (int ligne = 0; ligne < 9; ligne++){
 for (int col = 0; col < 9; col++){
@@ -45,6 +53,8 @@ cout << endl;
 }
 cout << endl<<endl;
 }
+
+
 bool estvide(int &ligne, int &col){ //obtenir l’emplacement vide
 for (ligne = 0; ligne < 9; ligne++)
 for (col = 0; col < 9; col++)
@@ -52,11 +62,15 @@ if (grille[ligne][col] == 0) //la valeur "0" nous permet de reperer une case est
 return true;
 return false;
 }
+
+
 bool estvalide(int ligne, int col, int nb){  //la grille est valide si nb n'est pas trouvé dans la colonne, ligne et le carrée 3 x 3 de nb 
 
 return !presentligne(ligne, nb) and !presentcol(col, nb) and
 !presentcarre(ligne - ligne%3 , col - col%3, nb);
 }
+
+
 bool solve(){
 int ligne, col;
 if (!estvide(ligne, col))
@@ -71,6 +85,8 @@ grille[ligne][col] = 0; //on se tourner vers les autres case vide lorsque les co
 }
 return false;
 }
+
+
 int main(){
     cout<<"Le sudoku a resoudre est :"<<endl<<endl;
     affiche();
